@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from '../helpers/authHelpers.js';
-import { JWT } from "jsonwebtoken";
+import { Jwt } from 'jsonwebtoken'
 
 export const registerController = async (req, res) => {
   try {
@@ -82,7 +82,7 @@ export const loginController = async (req, res) => {
       })
     }
     // token
-    const token = await JWT.sign({_id:user._id}, process.env.JWT_SECRET, {
+    const token = await Jwt.sign({_id:user._id}, process.env.JWT_SECRET, {
       expresIn: "7d"
     });
     res.status(200).send({
@@ -104,4 +104,9 @@ export const loginController = async (req, res) => {
       error
     })
   }
+}
+
+// test controller
+export const testController = (req, res) => {
+  res.send('Ruta protegida');
 }
