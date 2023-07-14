@@ -1,15 +1,13 @@
 import React from "react";
-import Header from './Header';
-import Footer from './Footer';
+import Header from "./Header";
+import Footer from "./Footer";
 
-export const Layout = (porps) => {
+export const Layout = ({ children }) => {
   return (
     <div>
       <Header />
-      <main>
-      {porps.children}
-      </main>
-      <footer></footer>
+      <main style={{ minHeight: "80vh" }}>{children}</main>
+      <Footer />
     </div>
   );
 };
