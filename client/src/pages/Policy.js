@@ -3,7 +3,7 @@ import Layout from '../components/Layout/Layout'
 
 function Policy() {
   return (
-    <Layout>
+    <Layout title={'policy of page'}>
         <h1>Políticas de la página</h1>
     </Layout>
   )
