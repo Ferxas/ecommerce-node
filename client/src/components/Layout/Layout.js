@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children, title, description, keywords, author }) => {
   return (
@@ -17,7 +19,10 @@ const Layout = ({ children, title, description, keywords, author }) => {
         </div>
       </Helmet>
       <Header />
-      <main style={{ minHeight: "70vh" }}>{children}</main>
+      <main style={{ minHeight: "70vh" }}>
+        <ToastContainer />
+        {children}
+      </main>
       <Footer />
     </div>
   );
@@ -25,9 +30,9 @@ const Layout = ({ children, title, description, keywords, author }) => {
 
 Layout.defaultProps = {
   title: "Ecommerce",
-  description: 'Ecommerce node y react',
-  keywords:'ecomerce, ecommerce, nodejs, reactjs ',
-  author: 'Juan',
-}
+  description: "Ecommerce node y react",
+  keywords: "ecomerce, ecommerce, nodejs, reactjs ",
+  author: "Juan",
+};
 
 export default Layout;
