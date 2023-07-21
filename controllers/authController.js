@@ -7,26 +7,26 @@ export const registerController = async (req, res) => {
     const { name, email, password, phone, address } = req.body;
     // validations
     if (!name) {
-      return res.send({ error: "El dato del nombre es obligatorio" });
+      return res.send({ message: "El dato del nombre es obligatorio" });
     }
     if (!email) {
-      return res.send({ error: "El dato del correo es obligatorio" });
+      return res.send({ message: "El dato del correo es obligatorio" });
     }
     if (!password) {
-      return res.send({ error: "El dato de la contaseña es obligatorio" });
+      return res.send({ message: "El dato de la contaseña es obligatorio" });
     }
     if (!phone) {
-      return res.send({ error: "El dato del teléfono es obligatorio" });
+      return res.send({ message: "El dato del teléfono es obligatorio" });
     }
     if (!address) {
-      return res.send({ error: "El dato de la drección es obligatorio" });
+      return res.send({ message: "El dato de la drección es obligatorio" });
     }
     // si el usuario existe
     const existingUser = await userModel.findOne({ email });
     // va a comprobarlo si existe
     if (existingUser) {
       return res.status(200).send({
-        success: true,
+        success: false,
         message: "Usuario ya registrado",
       });
     }

@@ -7,13 +7,15 @@ import Pagenotfound from './pages/PageNotFound'
 import Register from "./pages/Auth/Register";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Login from "./pages/Auth/Login";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/Policy" element={<Policy/>} />

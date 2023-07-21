@@ -54,8 +54,8 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/" className="dropdown-item" href="#">
-                      Another action
+                    <NavLink to="/login" className="dropdown-item" href="#">
+                      Ingresar a tu cuenta
                     </NavLink>
                   </li>
                   <li>
