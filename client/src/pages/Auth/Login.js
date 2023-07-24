@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { useAuth } from "../../context/auth";
 
 const Login = () => {
-    const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
+  const [auth, setAuth] = useAuth
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +24,12 @@ const Login = () => {
       if (res && res.data.success) {
         toast.success(res.data.message); // puedes reemplazar esto por cualquier textp
         navigate("/");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+          
+        })
       } else {
         toast.error(res.data.message); // puedes reemplazar esto por cualquier texto
       }
@@ -31,13 +39,11 @@ const Login = () => {
     }
   };
 
-
   return (
     <Layout title={"Registrarse"}>
       <div className="register">
         <h1>Ingresa a tu cuenta</h1>
         <form onSubmit={handleSubmit}>
-          
           <div className="mb-3">
             <input
               type="email"
@@ -67,15 +73,7 @@ const Login = () => {
         </form>
       </div>
     </Layout>
-  )
+  );
+};
 
-}
-
-
-
-
-
-
-
-
-export default Login
+export default Login;
