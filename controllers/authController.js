@@ -1,25 +1,25 @@
 import userModel from "../models/userModel.js";
 import { comparePassword, hashPassword } from '../helpers/authHelpers.js';
-import { Jwt } from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken';
 
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, phone, address } = req.body;
     // validations
     if (!name) {
-      return res.send({ message: "El dato del nombre es obligatorio" });
+      return res.send({ error: "El dato del nombre es obligatorio" });
     }
     if (!email) {
-      return res.send({ message: "El dato del correo es obligatorio" });
+      return res.send({ error: "El dato del correo es obligatorio" });
     }
     if (!password) {
-      return res.send({ message: "El dato de la contaseña es obligatorio" });
+      return res.send({ error: "El dato de la contaseña es obligatorio" });
     }
     if (!phone) {
-      return res.send({ message: "El dato del teléfono es obligatorio" });
+      return res.send({ error: "El dato del teléfono es obligatorio" });
     }
     if (!address) {
-      return res.send({ message: "El dato de la drección es obligatorio" });
+      return res.send({ error: "El dato de la drección es obligatorio" });
     }
     // si el usuario existe
     const existingUser = await userModel.findOne({ email });
@@ -82,7 +82,7 @@ export const loginController = async (req, res) => {
       })
     }
     // token
-    const token = await Jwt.sign({_id:user._id}, process.env.JWT_SECRET, {
+    const token = await jwt.sign({_id:user._id}, process.env.JWT_SECRET, {
       expresIn: "7d"
     });
     res.status(200).send({
